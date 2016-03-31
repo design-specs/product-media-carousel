@@ -1,0 +1,64 @@
+<!--Definition of media carousel element-->
+
+<media-carousel>
+
+	<primary-content controls="navigation full-screen zoom hover">
+
+		<product type="{{product.type}}}" id="{{product.id}}"></product>
+
+	</primary-content>
+
+	<thumbnails>
+
+		<template repeat="listOfProductItems">
+
+			<product type="{{product.type}}}" src="images/{{product.id}}/main.jpg"
+					 hdSrc="images/{{product.id}}/main-hd.png" thumbnail>
+			</product>
+
+		</template>
+		
+	</thumbnails>
+
+</media-carousel>
+
+
+<!--Definition of product element-->
+
+<product type id>
+	<dom-repeat if="{{productIsImage">
+		<image src="{{https://multimedia.bbycastatic.ca/multimedia/products/500x500/{{product.category}}/{{product.section}}/{{product.id}}.jpg}}"
+				hdSrc="{{https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/{{product.category}}/{{product.section}}/{{product.id}}.jpg}}">
+		</image>
+	</dom-repeat>
+
+	<dom-repeat if="{{productIsVideo">
+		<youtube-element src="{{https://multimedia.bbycastatic.ca/multimedia/products/500x500/{{product.category}}/{{product.section}}/{{product.id}}.jpg}}">
+		</youtube-element>
+	</dom-repeat>
+
+	<dom-repeat if="{{productIsSpin">
+		<spin-element src="{{http://spins0.arqspin.com/{{product.id}}/spin.webm}}">
+		</spin-element>
+	</dom-repeat>
+</product>
+
+
+<!-- Data Model -->
+<script>
+	listOfProductItems = {
+		productId1 {
+			type: "image",
+			src: "https://multimedia.bbycastatic.ca/multimedia/products/500x500/{{product.category}}/{{product.section}}/{{product.id}}.jpg",
+			hdSrc: "https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/{{product.category}}/{{product.section}}/{{product.id}}.jpg"
+		},
+		productId12 {
+			type: "video",
+			src: "https://www.youtube.com/embed/{{product.id}}}"
+		},
+		productId3 {
+			type: "spin",
+			src: "http://spins0.arqspin.com/{{product.id}}/spin.webm"
+		}
+	}
+</script>
